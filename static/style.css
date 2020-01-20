@@ -48,6 +48,12 @@ img {
     margin: 1rem 0;
 }
 
+.radio-group {
+    display: inline-block;
+    
+    
+}
+
 input[type='text'], 
 select, 
 textarea {
@@ -73,5 +79,60 @@ textarea {
 
 .reviews {
     width: 100%;
-    
+    border-collapse: collapse;
+}
+
+.reviews tr:nth-child(even){background-color: #e2e2e2;}
+.reviews tr:hover {background-color: #ddd;}
+
+.reviews thead {
+    font-size: 1.17em;
+    color: #111;
+    background-color: #00ffb8
+}
+
+.reviews th, .reviews td {
+    border: 1px solid #111;
+    padding: 10px;
+    text-align: left;
+}
+
+@media (max-width: 468px) {
+    .container {
+        width: 100%;  
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    input[type='text'], 
+    select {
+    font-size: 1rem;
+}
+
+    .radio-group {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .reviews {
+        width: 100%;
+    }
+  
+ 
+   .reviews tr {
+        font-size: 12px;
+        border-radius: 5px;
+        margin-bottom: 1px;
+        min-height: 14px;
+    }
+
+    .reviews td {
+        font-size: 12px;
+        padding: 5px;
+        border-radius: 5px;
+        margin-bottom: 1px;
+        min-height: 14px;
+    }
 }

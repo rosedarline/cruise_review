@@ -45,16 +45,17 @@ def submit():
         dealer = request.form['dealer']
         rating = request.form['rating']
         comments = request.form['comments']
-        print(customer, dealer, rating, comments)
+        reviews = db.session.query(feedback).all()
+        print(customer, dealer, rating, comments, reviews)
         if customer == '' or dealer == '':
-            return render_template('index.html', message='Please enter required fields')
+            return render_template('index.html', message='Please enter required fields', reviews=reviews)
         if db.session.query(feedback).filter(feedback.customer == customer).count() == 0:
             data = feedback(customer, dealer, rating, comments)
             db.session.add(data)
             db.session.commit()
             send_mail(customer, dealer, rating, comments)
             return render_template('success.html')
-        return render_template('index.html', message='You have already submitted feedback')
+        return render_template('index.html', message='You have already submitted feedback', reviews=reviews)
 
 
 if __name__ == '__main__':
