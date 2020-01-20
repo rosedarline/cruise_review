@@ -34,7 +34,8 @@ class feedback(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    reviews = db.session.query(feedback).all()
+    return render_template('index.html', reviews=reviews)
 
 
 @app.route('/submit', methods=['POST'])
@@ -46,7 +47,7 @@ def submit():
         comments = request.form['comments']
         print(customer, dealer, rating, comments)
         if customer == '' or dealer == '':
-            return render_template('index.html', message='Please enter required fiels')
+            return render_template('index.html', message='Please enter required fields')
         if db.session.query(feedback).filter(feedback.customer == customer).count() == 0:
             data = feedback(customer, dealer, rating, comments)
             db.session.add(data)

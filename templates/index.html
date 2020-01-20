@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,11 @@
     <link rel="stylesheet" href="../static/style.css">
     <title>Please rate your service</title>
 </head>
+
 <body>
     <div class="container">
-        <img src="../static/jaguar-logo.jpg" alt="Lexus" class="logo">
-        
+        <img src="../static/jaguar-logo.jpg" alt="Jaguar" class="logo">
+
         {% if message %}
         <p class="message">{{ message | safe }}</p>
         {% endif %}
@@ -18,10 +20,7 @@
         <form action="/submit" method="POST">
             <div class="form-group">
                 <h3>Cutomer Name</h3>
-                <input 
-                type="text" 
-                name="customer" 
-                placeholder="Name of vehicle owner">
+                <input type="text" name="customer" placeholder="Name of vehicle owner">
             </div>
             <div class="form-group">
                 <h3>Dealer</h3>
@@ -48,15 +47,31 @@
             </div>
             <div class="form-group">
                 <h3>Comments about your experience</h3>
-                <textarea name="comments"
-                 id="" 
-                 cols="30" 
-                 rows="10"
-                 placeholder="Tell us what you liked and/or did not like">
+                <textarea name="comments" id="" cols="30" rows="10"
+                    placeholder="Tell us what you liked and/or did not like">
                 </textarea>
             </div>
             <input type="submit" value="Submit" class="btn">
         </form>
+        <table class="reviews">
+            <thead>
+                <th>Customer</th>
+                <th>Dealer</th>
+                <th>Rating</th>
+                <th>Comments</th>
+            </thead>
+            <tbody>
+                {% for review in reviews %}
+                <tr>
+                    <td>{{ review.customer }}</td>
+                    <td>{{ review.dealer }}</td>
+                    <td>{{ review.rating }}</td>
+                    <td>{{ review.comments }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
+
 </html>
